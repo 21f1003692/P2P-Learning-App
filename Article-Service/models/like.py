@@ -3,8 +3,8 @@ from db import db
 from typing import List
 
 
-class LikesModel(db.Model):
-    __tablename__ = "likes"
+class LikeModel(db.Model):
+    __tablename__ = "like"
 
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
@@ -12,8 +12,8 @@ class LikesModel(db.Model):
     article_id = db.Column(db.Integer,db.ForeignKey('article.id'),nullable=False)
     article = db.relationship("ArticleModel")
 
-    user_id = db.Column(db.Integer,db.ForeignKey('article.user_id'),nullable=False)
-    user = db.relationship("ArticleModel")
+    user_id = db.Column(db.Integer,nullable=False)
+
 
     def __init__(self, article_id, user_id):
         self.article_id = article_id
@@ -26,11 +26,11 @@ class LikesModel(db.Model):
         return {'article_id': self.article_id, 'user_id': self.user_id, 'timestamp': self.timestamp}
 
     @classmethod
-    def find_by_id(cls, _id) -> "LikesModel":
+    def find_by_id(cls, _id) -> "LikeModel":
         return cls.query.filter_by(id=_id).first()
 
     @classmethod
-    def find_all(cls) -> List["LikesModel"]:
+    def find_all(cls) -> List["LikeModel"]:
         return cls.query.all()
 
     def save_to_db(self) -> None:

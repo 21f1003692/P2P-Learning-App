@@ -12,7 +12,7 @@ class ArticleModel(db.Model):
     track_id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
-    likes = db.relationship("LikesModel",lazy="dynamic",primaryjoin="ArticleModel.id == LikesModel.article_id")
+    like = db.relationship("LikeModel",lazy="dynamic",primaryjoin="ArticleModel.id == LikeModel.article_id")
 
 
     def __init__(self, url, user_id, track_id):
