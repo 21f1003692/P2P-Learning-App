@@ -228,16 +228,18 @@ def login():
 @app.route('/forums', methods=['GET'])
 @token_required
 def get_forums(current_user):
-
     app.logger.info('get_forums')
-    res = requests.get('http://127.0.0.1:5001/api/forums')
-    print(res)
-    # return res.json(), res.status_code
+    res = requests.get('http://0.0.0.0:5001/api/forums')
+    forums= res.json()
+    output=[]
+    for forum in forums:
+        output.append(forum)
+    response = jsonify({'forums' : output})
+    return response, res.status_code
 
 @app.route('/forum/<forum_id>', methods=['GET'])
 @token_required
 def get_forum(current_user,forum_id):
-
     app.logger.info('get_one_card')
     res = []
     res = requests.get('http://127.0.0.1:5001/api/forum/' + str(forum_id))
@@ -272,8 +274,15 @@ def delete_forum(current_user, forum_id):
 def get_sessions(current_user):
 
     app.logger.info('get_sessions')
-    res = requests.get('http://127.0.0.1:5002/api/sessions')
-    return res.content, res.status_code
+    res = requests.get('http://0.0.0.0:5002/api/sessions')
+    print(type(res.json()))
+    sessions= res.json()
+    output=[]
+    for session in sessions:
+        output.append(session)
+    response = jsonify({'sessions' : output})
+    return response,res.status_code
+
 
 @app.route('/session/<session_id>', methods=['GET'])
 @token_required
