@@ -229,7 +229,7 @@ def login():
 @token_required
 def get_forums(current_user):
     app.logger.info('get_forums')
-    res = requests.get('http://0.0.0.0:5001/api/forums')
+    res = requests.get('http://127.0.0.1:5001/api/forums')
     forums= res.json()
     output=[]
     for forum in forums:
@@ -274,7 +274,7 @@ def delete_forum(current_user, forum_id):
 def get_sessions(current_user):
 
     app.logger.info('get_sessions')
-    res = requests.get('http://0.0.0.0:5002/api/sessions')
+    res = requests.get('http://127.0.0.1:5002/api/sessions')
     print(type(res.json()))
     sessions= res.json()
     output=[]
@@ -299,3 +299,17 @@ def delete_session(current_user, session_id):
     app.logger.info('delete_session')
     res = requests.delete('http://127.0.0.1:5002/api/session/' + str(session_id))
     return res.json(), res.status_code
+
+@app.route('/articles', methods=['GET'])
+@token_required
+def get_articles(current_user):
+
+    app.logger.info('get_articles')
+    res = requests.get('http://127.0.0.1:5003/api/articles')
+    print(type(res.json()))
+    sessions= res.json()
+    output=[]
+    for session in sessions:
+        output.append(session)
+    response = jsonify({'sessions' : output})
+    return response,res.status_code
