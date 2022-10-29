@@ -2,8 +2,6 @@ from flask import request
 from flask_restplus import Resource, fields, Namespace
 
 from models.article import ArticleModel
-from models.like import LikeModel
-from resources.article import ArticleList
 from schemas.article import ArticleSchema
 
 ARTICLE_NOT_FOUND = "Article not found."
