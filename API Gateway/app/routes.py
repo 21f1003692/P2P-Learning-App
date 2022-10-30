@@ -313,3 +313,36 @@ def get_articles(current_user):
         output.append(session)
     response = jsonify({'sessions' : output})
     return response,res.status_code
+
+@app.route('/article', methods=['POST'])
+@token_required
+def create_article(current_user):
+
+    app.logger.info('update_article')
+    res = requests.post('http://127.0.0.1:5003/api/articles', json=request.get_json())
+    return res.json(), res.status_code
+
+@app.route('/article/<article_id>', methods=['GET'])
+@token_required
+def get_article(current_user,article_id):
+
+    app.logger.info('get_article')
+    res = requests.get('http://127.0.0.1:5003/api/article/' + str(article_id))
+    return res.json(), res.status_code
+
+@app.route('/article/<article_id>', methods=['DELETE'])
+@token_required
+def delete_article(current_user, article_id):
+
+    app.logger.info('delete_session')
+    res = requests.delete('http://127.0.0.1:5003/api/article/' + str(article_id))
+    return res.json(), res.status_code
+
+@app.route('/article/<article_id>', methods=['PUT'])
+@token_required
+def update_article(current_user, forum_id):
+
+    app.logger.info('update_article')
+    res = requests.put('http://127.0.0.1:5003/api/article/' + str(forum_id), json=request.get_json())
+    return res.json(), res.status_code
+

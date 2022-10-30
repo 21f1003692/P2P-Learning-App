@@ -8,8 +8,8 @@ class ArticleModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     url = db.Column(db.String(1000))
-    user_id = db.Column(db.Integer, primary_key=True)
-    track_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer,nullable=False)
+    track_id = db.Column(db.Integer, nullable=False)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     like = db.relationship("LikeModel",lazy="dynamic",primaryjoin="ArticleModel.id == LikeModel.article_id")
