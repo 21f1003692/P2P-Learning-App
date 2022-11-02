@@ -311,7 +311,7 @@ def get_articles(current_user):
     output=[]
     for session in sessions:
         output.append(session)
-    response = jsonify({'sessions' : output})
+    response = jsonify({'articles' : output})
     return response,res.status_code
 
 @app.route('/article', methods=['POST'])
