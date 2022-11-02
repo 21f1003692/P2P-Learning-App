@@ -16,7 +16,7 @@ answer_list_schema = AnswerSchema(many=True)
 #Model required by flask_restplus for expect
 answer = answers_ns.model('Answer', {
     'answer': fields.String('Answer'),
-    'username': fields.String('Username'),
+    'user_id': fields.Integer('User ID'),
     'question_id': fields.Integer
 })
 
@@ -43,7 +43,7 @@ class Answer(Resource):
 
         if answer_data:
             answer_data.answer = answer_json['answer']
-            answer_data.username = answer_json['username']
+            answer_data.user_id = answer_json['user_id']
             answer_data.card_id = answer_json['card_id']
         else:
             answer_data = answer_schema.load(answer_json)

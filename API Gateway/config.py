@@ -6,3 +6,6 @@ class Config(object):
     SECRET_KEY = 'thisissecret'
     #DB
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'user.db')
+    #Swagger
+    SWAGGER_URL = '/swagger'
+    API_URL = '/static/swagger.json'

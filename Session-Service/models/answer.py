@@ -8,22 +8,22 @@ class AnswerModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     answer = db.Column(db.String(1000))
-    username = db.Column(db.String(100))
+    user_id = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     question_id = db.Column(db.Integer,db.ForeignKey('question.id'),nullable=False)
     question = db.relationship("QuestionModel")
 
-    def __init__(self, answer, username, question_id):
+    def __init__(self, answer, user_id, question_id):
         self.answer = answer
-        self.username = username
+        self.user_id = user_id
         self.question_id = question_id
 
     def __repr__(self):
-        return 'AnswerModel(answer=%s, username=%s, question_id=%s, timestamp=%s)' % (self.answer, self.username, self.question_id, self.timestamp)
+        return 'AnswerModel(answer=%s, user_id=%s, question_id=%s, timestamp=%s)' % (self.answer, self.user_id, self.question_id, self.timestamp)
 
     def json(self):
-        return {'answer': self.answer, 'username': self.username, 'question_id': self.timestamp, 'question_id': self.timestamp}
+        return {'answer': self.answer, 'user_id': self.user_id, 'question_id': self.timestamp, 'question_id': self.timestamp}
 
     @classmethod
     def find_by_id(cls, _id) -> "AnswerModel":
