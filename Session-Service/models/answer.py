@@ -23,7 +23,7 @@ class AnswerModel(db.Model):
         return 'AnswerModel(answer=%s, user_id=%s, question_id=%s, timestamp=%s)' % (self.answer, self.user_id, self.question_id, self.timestamp)
 
     def json(self):
-        return {'answer': self.answer, 'user_id': self.user_id, 'question_id': self.timestamp, 'question_id': self.timestamp}
+        return {'answer': self.answer, 'user_id': self.user_id, 'question_id': self.question_id, 'question_id': self.timestamp}
 
     @classmethod
     def find_by_id(cls, _id) -> "AnswerModel":
