@@ -8,7 +8,7 @@ class QuestionModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(1000))
-    username = db.Column(db.String(100))
+    user_id = db.Column(db.Integer)
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     session_id =db.Column(db.Integer,db.ForeignKey('session.id'),nullable=False)
@@ -16,16 +16,16 @@ class QuestionModel(db.Model):
 
     answers = db.relationship("AnswerModel",lazy="dynamic",primaryjoin="QuestionModel.id == AnswerModel.question_id")
 
-    def __init__(self, question, username, session_id):
+    def __init__(self, question, user_id, session_id):
         self.question = question
-        self.username = username
+        self.user_id = user_id
         self.session_id = session_id
 
     def __repr__(self):
-        return 'QuestionModel(question=%s, username=%s, session_id=%s, timestamp=%s)' % (self.question, self.username, self.session_id, self.timestamp)
+        return 'QuestionModel(question=%s, user_id=%s, session_id=%s, timestamp=%s)' % (self.question, self.user_id, self.session_id, self.timestamp)
 
     def json(self):
-        return {'question': self.question, 'username': self.username, 'session_id': self.session_id, 'timestamp': self.timestamp}
+        return {'question': self.question, 'user_id': self.user_id, 'session_id': self.session_id, 'timestamp': self.timestamp}
 
     @classmethod
     def find_by_id(cls, _id) -> "QuestionModel":

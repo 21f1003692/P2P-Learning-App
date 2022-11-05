@@ -18,3 +18,13 @@ Peer to Peer Learning App
 * flask db upgrade
 #### Main App(User Service)
 > flask run
+
+### Swagger
+
+#### Forum Service
+
+![Alt text](forum-service.png "Forum Service Swagger")
+
+#### Session Service
+
+![Alt text](session-service.png "Session Service Swagger")

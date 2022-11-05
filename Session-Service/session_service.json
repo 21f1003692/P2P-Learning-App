@@ -1,0 +1,483 @@
+{
+    "swagger": "2.0",
+    "basePath": "/api",
+    "paths": {
+        "/answer/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "delete_answer",
+                "tags": [
+                    "answer"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "put_answer",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Answer"
+                        }
+                    }
+                ],
+                "tags": [
+                    "answer"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "get_answer",
+                "tags": [
+                    "answer"
+                ]
+            }
+        },
+        "/answers": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Get all the Answers",
+                "tags": [
+                    "answers"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Create an Answer",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Answer"
+                        }
+                    }
+                ],
+                "tags": [
+                    "answers"
+                ]
+            }
+        },
+        "/invitee/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "delete_invitee",
+                "tags": [
+                    "invitee"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "put_invitee",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Invitee"
+                        }
+                    }
+                ],
+                "tags": [
+                    "invitee"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "get_invitee",
+                "tags": [
+                    "invitee"
+                ]
+            }
+        },
+        "/invitees": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Get all the Invitees",
+                "tags": [
+                    "invitees"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Create an Invitee",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Invitee"
+                        }
+                    }
+                ],
+                "tags": [
+                    "invitees"
+                ]
+            }
+        },
+        "/question/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "delete_question",
+                "tags": [
+                    "question"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "put_question",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Question"
+                        }
+                    }
+                ],
+                "tags": [
+                    "question"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "get_question",
+                "tags": [
+                    "question"
+                ]
+            }
+        },
+        "/questions": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Get all the Questions",
+                "tags": [
+                    "questions"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Create an Question",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Question"
+                        }
+                    }
+                ],
+                "tags": [
+                    "questions"
+                ]
+            }
+        },
+        "/session/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "delete_session",
+                "tags": [
+                    "session"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "put_session",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
+                    }
+                ],
+                "tags": [
+                    "session"
+                ]
+            },
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "get_session",
+                "tags": [
+                    "session"
+                ]
+            }
+        },
+        "/sessions": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Get all the Sessions",
+                "tags": [
+                    "sessions"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Create a Session",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Session"
+                        }
+                    }
+                ],
+                "tags": [
+                    "sessions"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Session Service",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "invitee",
+            "description": "Invitee related operations"
+        },
+        {
+            "name": "invitees",
+            "description": "Invitees related operations"
+        },
+        {
+            "name": "question",
+            "description": "Question related operations"
+        },
+        {
+            "name": "questions",
+            "description": "Questions related operations"
+        },
+        {
+            "name": "session",
+            "description": "Session related operations"
+        },
+        {
+            "name": "sessions",
+            "description": "Sessions related operations"
+        },
+        {
+            "name": "answer",
+            "description": "Answer related operations"
+        },
+        {
+            "name": "answers",
+            "description": "Answers related operations"
+        }
+    ],
+    "definitions": {
+        "Invitee": {
+            "properties": {
+                "session_id": {
+                    "type": "integer"
+                },
+                "invitee_uid": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "Question": {
+            "properties": {
+                "session_id": {
+                    "type": "integer"
+                },
+                "question": {
+                    "type": "string",
+                    "default": "Question"
+                },
+                "user_id": {
+                    "type": "integer",
+                    "default": "User ID"
+                }
+            },
+            "type": "object"
+        },
+        "Session": {
+            "properties": {
+                "track_id": {
+                    "type": "integer"
+                },
+                "session_name": {
+                    "type": "string",
+                    "default": "Session Name"
+                },
+                "session_description": {
+                    "type": "string",
+                    "default": "Session Description"
+                },
+                "session_url": {
+                    "type": "string",
+                    "default": "Session URL"
+                },
+                "begin_time": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "end_time": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "type": "object"
+        },
+        "Answer": {
+            "properties": {
+                "answer": {
+                    "type": "string",
+                    "default": "Answer"
+                },
+                "user_id": {
+                    "type": "integer",
+                    "default": "User ID"
+                },
+                "question_id": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        },
+        "ValidationError": {}
+    }
+}

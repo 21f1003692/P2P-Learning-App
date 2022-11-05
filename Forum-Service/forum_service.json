@@ -1,0 +1,358 @@
+{
+    "swagger": "2.0",
+    "basePath": "/api",
+    "paths": {
+        "/comment/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "get_comment",
+                "tags": [
+                    "comment"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "delete_comment",
+                "tags": [
+                    "comment"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "put_comment",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Comment"
+                        }
+                    }
+                ],
+                "tags": [
+                    "comment"
+                ]
+            }
+        },
+        "/comments": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Get all the Comments",
+                "tags": [
+                    "comments"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Create an Comment",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Comment"
+                        }
+                    }
+                ],
+                "tags": [
+                    "comments"
+                ]
+            }
+        },
+        "/forum/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "get_forum",
+                "tags": [
+                    "forum"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "delete_forum",
+                "tags": [
+                    "forum"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "put_forum",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Forum"
+                        }
+                    }
+                ],
+                "tags": [
+                    "forum"
+                ]
+            }
+        },
+        "/forums": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Get all the Forums",
+                "tags": [
+                    "forums"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Create a Forum",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Forum"
+                        }
+                    }
+                ],
+                "tags": [
+                    "forums"
+                ]
+            }
+        },
+        "/replies": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Get all the Replies",
+                "tags": [
+                    "replies"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "Create an Reply",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Reply"
+                        }
+                    }
+                ],
+                "tags": [
+                    "replies"
+                ]
+            }
+        },
+        "/reply/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer"
+                }
+            ],
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "get_reply",
+                "tags": [
+                    "reply"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "delete_reply",
+                "tags": [
+                    "reply"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "operationId": "put_reply",
+                "parameters": [
+                    {
+                        "name": "payload",
+                        "required": true,
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Reply"
+                        }
+                    }
+                ],
+                "tags": [
+                    "reply"
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Forum Service",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "tags": [
+        {
+            "name": "comment",
+            "description": "Comment related operations"
+        },
+        {
+            "name": "comments",
+            "description": "Comments related operations"
+        },
+        {
+            "name": "forum",
+            "description": "Forum related operations"
+        },
+        {
+            "name": "forums",
+            "description": "Forums related operations"
+        },
+        {
+            "name": "reply",
+            "description": "Reply related operations"
+        },
+        {
+            "name": "replies",
+            "description": "Replies related operations"
+        }
+    ],
+    "definitions": {
+        "Comment": {
+            "properties": {
+                "comment": {
+                    "type": "string",
+                    "default": "Comment"
+                },
+                "username": {
+                    "type": "string",
+                    "default": "Username"
+                },
+                "forum_id": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "Forum": {
+            "properties": {
+                "track_id": {
+                    "type": "integer"
+                },
+                "forum_name": {
+                    "type": "string",
+                    "default": "Forum Name"
+                }
+            },
+            "type": "object"
+        },
+        "Reply": {
+            "properties": {
+                "reply": {
+                    "type": "string",
+                    "default": "Reply"
+                },
+                "username": {
+                    "type": "string",
+                    "default": "Username"
+                },
+                "comment_id": {
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    },
+    "responses": {
+        "ParseError": {
+            "description": "When a mask can't be parsed"
+        },
+        "MaskError": {
+            "description": "When any error occurs on mask"
+        },
+        "ValidationError": {}
+    }
+}

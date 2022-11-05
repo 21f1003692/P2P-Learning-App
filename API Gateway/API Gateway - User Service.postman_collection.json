@@ -1,70 +1,11 @@
 {
 	"info": {
-		"_postman_id": "f09cee97-9fdb-4e79-8233-a6be18bbbb60",
+		"_postman_id": "8d640590-b4cd-43e8-9fab-9761d0e26397",
 		"name": "API Gateway / User Service",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "22865065"
+		"_exporter_id": "24208097"
 	},
 	"item": [
-		{
-			"name": "Authenticate",
-			"item": [
-				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const response = JSON.parse(responseBody);",
-									"",
-									"const token = response.token;",
-									"",
-									"pm.collectionVariables.set(\"TOKEN\", token);",
-									"",
-									"//console.log(token)"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "username",
-									"value": "Admin",
-									"type": "string"
-								},
-								{
-									"key": "password",
-									"value": "1234",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "http://127.0.0.1:5000/login",
-							"protocol": "http",
-							"host": [
-								"127",
-								"0",
-								"0",
-								"1"
-							],
-							"port": "5000",
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
 		{
 			"name": "Create Admin",
 			"request": {
@@ -109,7 +50,65 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create Admin",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Admin\",\r\n    \"username\":\"Admin\",\r\n    \"email\":\"admin@email.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/admin",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:46:16 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Admin created!\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Register User",
@@ -155,7 +154,65 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Register User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"user1\",\r\n    \"username\":\"user1\",\r\n    \"email\":\"user1@email.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:46:28 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"New user created!\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Create User",
@@ -179,13 +236,13 @@
 				"header": [
 					{
 						"key": "x-access-token",
-						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIyYjg0OTVhZi02MjZjLTQ5N2QtOThkYy1hOTQzMzAyMjRhYjkiLCJleHAiOjE2NDc3Njk0NDB9.pTv4abd4zSRaDNnF2aivMkEMHwjJjpduJzLi7drPcrQ",
+						"value": "{{TOKEN}}",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\":\"user2\",\r\n    \"username\":\"user2\",\r\n    \"email\":\"user2@email.com\",\r\n    \"password\":\"1234\"\r\n}",
+					"raw": "{\r\n    \"name\":\"user4\",\r\n    \"username\":\"user4\",\r\n    \"email\":\"user4@email.com\",\r\n    \"password\":\"1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -207,10 +264,178 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"user2\",\r\n    \"username\":\"user2\",\r\n    \"email\":\"user2@email.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/user",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "CREATED",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:47:07 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "32"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"New user created!\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Update User",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "{{TOKEN}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"user2\",\r\n    \"username\":\"user2\",\r\n    \"email\":\"user22@email.com\",\r\n    \"password\":\"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/currentuser",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"currentuser"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update User",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"user2\",\r\n    \"username\":\"user2\",\r\n    \"email\":\"user22@email.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/currentuser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"currentuser"
+							]
+						}
+					},
+					"status": "ACCEPTED",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:50:25 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The user has been updated!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Promote User",
 			"request": {
 				"auth": {
 					"type": "noauth"
@@ -233,7 +458,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/user",
+					"raw": "http://127.0.0.1:5000/user/45ad2d02-03c3-478a-86a6-ee66f7fb9cf4",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -243,11 +468,77 @@
 					],
 					"port": "5000",
 					"path": [
-						"user"
+						"user",
+						"45ad2d02-03c3-478a-86a6-ee66f7fb9cf4"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Promote User",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"type": "text",
+								"value": "{{TOKEN}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"user2\",\r\n    \"username\":\"user2\",\r\n    \"email\":\"user2@email.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/user/45ad2d02-03c3-478a-86a6-ee66f7fb9cf4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"45ad2d02-03c3-478a-86a6-ee66f7fb9cf4"
+							]
+						}
+					},
+					"status": "ACCEPTED",
+					"code": 202,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:49:28 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "42"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The user has been promoted!\"\n}"
+				}
+			]
 		},
 		{
 			"name": "Get Users",
@@ -278,10 +569,65 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/users",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:48:48 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1156"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"users\": [\n        {\n            \"admin\": true,\n            \"email\": \"admin@email.com\",\n            \"name\": \"Admin\",\n            \"password\": \"sha256$zr72Ah3pgljXEFLL$07fa332878fa2bbb454b6a15da3e2b3b2c294eebd3440409b16715e33d5c6345\",\n            \"public_id\": \"180a2a4e-24cb-4b0a-8a62-4d4e55604767\",\n            \"username\": \"Admin\"\n        },\n        {\n            \"admin\": false,\n            \"email\": \"user1@email.com\",\n            \"name\": \"user1\",\n            \"password\": \"sha256$WiVQzdT3YeLewGxb$90630602f579953b8e6bf0d1958ad50083f0efee9134ac33e8dcc76ccafdecbe\",\n            \"public_id\": \"45ad2d02-03c3-478a-86a6-ee66f7fb9cf4\",\n            \"username\": \"user1\"\n        },\n        {\n            \"admin\": false,\n            \"email\": \"user2@email.com\",\n            \"name\": \"user2\",\n            \"password\": \"sha256$C1WTnHP34TR447rK$00944d6a344347b180c257af8b582d4ffa1811d92cb196d9c5a0c084ffbaa048\",\n            \"public_id\": \"0cb91e9d-e1f5-4886-9914-90b2bf83a9c1\",\n            \"username\": \"user2\"\n        },\n        {\n            \"admin\": false,\n            \"email\": \"user3@email.com\",\n            \"name\": \"user3\",\n            \"password\": \"sha256$bXZhwbOQ86sM8WL8$b16914fa074bc99340922b7a94d2ab109e32c534459fd13521134aa8c03bfa70\",\n            \"public_id\": \"e8ec4da0-7835-4a0d-998f-fc95387e8f65\",\n            \"username\": \"user3\"\n        },\n        {\n            \"admin\": false,\n            \"email\": \"user4@email.com\",\n            \"name\": \"user4\",\n            \"password\": \"sha256$4Bs5vht5WiAjwglH$10e03885c4e05ef08e2bb33c6423a5c97f7912bb799440059aa410c1836f62cd\",\n            \"public_id\": \"c2ca8781-fe23-49a3-a75c-17d9b14b8865\",\n            \"username\": \"user4\"\n        }\n    ]\n}"
+				}
+			]
 		},
 		{
-			"name": "Get Sessions",
+			"name": "Get User",
 			"request": {
 				"auth": {
 					"type": "bearer"
@@ -295,7 +641,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:5000/sessions",
+					"raw": "http://127.0.0.1:5000/user/45ad2d02-03c3-478a-86a6-ee66f7fb9cf4",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -305,14 +651,159 @@
 					],
 					"port": "5000",
 					"path": [
-						"sessions"
+						"user",
+						"45ad2d02-03c3-478a-86a6-ee66f7fb9cf4"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/user/45ad2d02-03c3-478a-86a6-ee66f7fb9cf4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"45ad2d02-03c3-478a-86a6-ee66f7fb9cf4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:49:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "193"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"admin\": false,\n        \"name\": \"user1\",\n        \"password\": \"sha256$WiVQzdT3YeLewGxb$90630602f579953b8e6bf0d1958ad50083f0efee9134ac33e8dcc76ccafdecbe\",\n        \"public_id\": \"45ad2d02-03c3-478a-86a6-ee66f7fb9cf4\"\n    }\n}"
+				}
+			]
 		},
 		{
-			"name": "Get Session By ID",
+			"name": "Delete User",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "{{TOKEN}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/user/45ad2d02-03c3-478a-86a6-ee66f7fb9cf4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"45ad2d02-03c3-478a-86a6-ee66f7fb9cf4"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete User",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/user/45ad2d02-03c3-478a-86a6-ee66f7fb9cf4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"45ad2d02-03c3-478a-86a6-ee66f7fb9cf4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:53:06 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"The user has been deleted!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Current User",
 			"request": {
 				"auth": {
 					"type": "bearer"
@@ -326,7 +817,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://127.0.0.1:5000/session/1",
+					"raw": "http://127.0.0.1:5000/currentuser",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -336,84 +827,106 @@
 					],
 					"port": "5000",
 					"path": [
-						"session",
-						"1"
+						"currentuser"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Get Current User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/currentuser",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"currentuser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:50:39 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "121"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"email\": \"user22@email.com\",\n    \"id\": 1,\n    \"name\": \"user2\",\n    \"public_id\": \"180a2a4e-24cb-4b0a-8a62-4d4e55604767\",\n    \"username\": \"Admin\"\n}"
+				}
+			]
 		},
 		{
-			"name": "Get Forums",
-			"request": {
-				"auth": {
-					"type": "bearer"
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "x-access-token",
-						"value": "{{TOKEN}}",
-						"type": "text"
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = JSON.parse(responseBody);",
+							"",
+							"const token = response.token;",
+							"",
+							"pm.collectionVariables.set(\"TOKEN\", token);",
+							"",
+							"//console.log(token)"
+						],
+						"type": "text/javascript"
 					}
-				],
-				"url": {
-					"raw": "http://127.0.0.1:5000/forums",
-					"protocol": "http",
-					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
-					],
-					"port": "5000",
-					"path": [
-						"forums"
-					]
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Forum By ID",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			],
 			"request": {
 				"auth": {
 					"type": "basic",
 					"basic": [
 						{
-							"key": "password",
-							"value": "1234",
+							"key": "username",
+							"value": "Admin",
 							"type": "string"
 						},
 						{
-							"key": "username",
-							"value": "Admin",
+							"key": "password",
+							"value": "1234",
 							"type": "string"
 						}
 					]
 				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "x-access-token",
-						"type": "text",
-						"value": "{{TOKEN}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
+				"method": "POST",
+				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:5000/forum/2",
+					"raw": "http://127.0.0.1:5000/login",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -423,12 +936,60 @@
 					],
 					"port": "5000",
 					"path": [
-						"forum",
-						"2"
+						"login"
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.2.2 Python/3.9.0"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 02 Nov 2022 14:46:40 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "186"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIxODBhMmE0ZS0yNGNiLTRiMGEtOGE2Mi00ZDRlNTU2MDQ3NjciLCJleHAiOjE2Njc0MDc2MDB9.DZAyAZ-GhkaU9tQ1H4oNbPVhz4MhAjsSXfOqQ6lqlqU\"\n}"
+				}
+			]
 		}
 	],
 	"event": [

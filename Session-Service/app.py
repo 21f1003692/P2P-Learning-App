@@ -5,6 +5,7 @@ from db import db
 
 from resources.session import Session, SessionList, session_ns, sessions_ns
 from resources.question import Question, QuestionList, question_ns, questions_ns
+from resources.invitee import Invitee, InviteeList, invitee_ns, invitees_ns
 from resources.answer import Answer, AnswerList, answer_ns, answers_ns
 from marshmallow import ValidationError
 
@@ -17,6 +18,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 
+api.add_namespace(invitee_ns)
+api.add_namespace(invitees_ns)
 api.add_namespace(question_ns)
 api.add_namespace(questions_ns)
 api.add_namespace(session_ns)
@@ -38,10 +41,12 @@ answer_ns.add_resource(Answer, '/<int:id>')
 answers_ns.add_resource(AnswerList, "")
 question_ns.add_resource(Question, '/<int:id>')
 questions_ns.add_resource(QuestionList, "")
+invitee_ns.add_resource(Invitee, '/<int:id>')
+invitees_ns.add_resource(InviteeList, "")
 session_ns.add_resource(Session, '/<int:id>')
 sessions_ns.add_resource(SessionList, "")
 
 if __name__ == '__main__':
     db.init_app(app)
     ma.init_app(app)
-    app.run(port=5002, debug=True,host='0.0.0.0')
+    app.run(port=5002, debug=True,host='127.0.0.1')

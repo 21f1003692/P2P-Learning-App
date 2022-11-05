@@ -11,7 +11,8 @@ class SessionModel(db.Model):
     session_url = db.Column(db.String(1000))
     begin_time = db.Column(db.DateTime)
     end_time = db.Column(db.DateTime)
-    
+
+#   invitees = db.relationship("InviteeModel",lazy="dynamic",primaryjoin="SessionModel.id == InviteeModel.session_id")
     questions = db.relationship("QuestionModel",lazy="dynamic",primaryjoin="SessionModel.id == QuestionModel.session_id")
 
     def __init__(self, track_id, session_name, session_description, session_url, begin_time, end_time):

@@ -1,0 +1,382 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Gateway / User Service",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:5000"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "basicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "noauthAuth": {
+                "type": "http",
+                "scheme": "noauth"
+            },
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "paths": {
+        "/admin": {
+            "post": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Create Admin",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "Admin",
+                                    "username": "Admin",
+                                    "email": "admin@email.com",
+                                    "password": "1234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Register User",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "user1",
+                                    "username": "user1",
+                                    "email": "user1@email.com",
+                                    "password": "1234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "post": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Create User",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "user2",
+                                    "username": "user2",
+                                    "email": "user2@email.com",
+                                    "password": "1234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiIyYjg0OTVhZi02MjZjLTQ5N2QtOThkYy1hOTQzMzAyMjRhYjkiLCJleHAiOjE2NDc3Njk0NDB9.pTv4abd4zSRaDNnF2aivMkEMHwjJjpduJzLi7drPcrQ"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Update User",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "user2",
+                                    "username": "user2",
+                                    "email": "user2@email.com",
+                                    "password": "1234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "noauthAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "{{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/user/8e1069e0-0976-472f-81d2-279f7e1db335": {
+            "put": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Promote User",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "example": {
+                                    "name": "user2",
+                                    "username": "user2",
+                                    "email": "user2@email.com",
+                                    "password": "1234"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "noauthAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "{{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Get User",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "{{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Delete User",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "{{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Get Users",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "{{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/currentuser": {
+            "get": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Get Current User",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "x-access-token",
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "{{TOKEN}}"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "default"
+                ],
+                "summary": "Login",
+                "requestBody": {
+                    "content": {}
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
