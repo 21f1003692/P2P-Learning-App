@@ -17,9 +17,9 @@ question_list_schema = QuestionSchema(many=True)
 
 #Model required by flask_restplus for expect
 question = questions_ns.model('Question', {
+    'session_id': fields.Integer, 
     'question': fields.String('Question'),
-    'username': fields.String('Username'),
-    'forum_id': fields.Integer
+    'user_id': fields.Integer('User ID')
 })
 
 
@@ -45,7 +45,7 @@ class Question(Resource):
 
         if question_data:
             question_data.question = question_json['question']
-            question_data.username = question_json['username']
+            question_data.user_id = question_json['user_id']
             question_data.forum_id = question_json['forum_id']
         else:
             question_data = question_schema.load(question_json)

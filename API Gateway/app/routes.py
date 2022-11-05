@@ -1,14 +1,18 @@
 import io
-from flask import request, jsonify, make_response, Response
+from flask import request, jsonify, make_response, Response, send_from_directory
 import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
-import csv
 from functools import wraps
 from app import app, db
 from app.models import User
 import requests
+
+
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
 
 def token_required(f):
     @wraps(f)
@@ -225,6 +229,8 @@ def login():
 
     return response
 
+# Forum
+
 @app.route('/forums', methods=['GET'])
 @token_required
 def get_forums(current_user):
@@ -269,6 +275,100 @@ def delete_forum(current_user, forum_id):
     res = requests.delete('http://127.0.0.1:5001/api/forum/' + str(forum_id))
     return res.json(), res.status_code
 
+# Comment
+
+@app.route('/comments', methods=['GET'])
+@token_required
+def get_comments(current_user):
+    app.logger.info('get_comments')
+    res = requests.get('http://127.0.0.1:5001/api/comments')
+    comments= res.json()
+    output=[]
+    for comment in comments:
+        output.append(comment)
+    response = jsonify({'comments' : output})
+    return response, res.status_code
+
+@app.route('/comment/<comment_id>', methods=['GET'])
+@token_required
+def get_comment(current_user,comment_id):
+    app.logger.info('get_one_card')
+    res = []
+    res = requests.get('http://127.0.0.1:5001/api/comment/' + str(comment_id))
+    return res.json(), res.status_code
+
+@app.route('/comment', methods=['POST'])
+@token_required
+def create_comment(current_user):
+
+    app.logger.info('create_comment')
+    res = requests.post('http://127.0.0.1:5001/api/comments', json=request.get_json())
+    return res.json(), res.status_code
+
+@app.route('/comment/<comment_id>', methods=['PUT'])
+@token_required
+def update_comment(current_user, comment_id):
+
+    app.logger.info('update_comment')
+    res = requests.put('http://127.0.0.1:5001/api/comment/' + str(comment_id), json=request.get_json())
+    return res.json(), res.status_code
+
+@app.route('/comment/<comment_id>', methods=['DELETE'])
+@token_required
+def delete_comment(current_user, comment_id):
+
+    app.logger.info('delete_comment')
+    res = requests.delete('http://127.0.0.1:5001/api/comment/' + str(comment_id))
+    return res.json(), res.status_code
+
+# Reply
+
+@app.route('/replies', methods=['GET'])
+@token_required
+def get_replies(current_user):
+    app.logger.info('get_replies')
+    res = requests.get('http://127.0.0.1:5001/api/replies')
+    replies= res.json()
+    output=[]
+    for reply in replies:
+        output.append(reply)
+    response = jsonify({'replies' : output})
+    return response, res.status_code
+
+@app.route('/reply/<reply_id>', methods=['GET'])
+@token_required
+def get_reply(current_user,reply_id):
+    app.logger.info('get_one_card')
+    res = []
+    res = requests.get('http://127.0.0.1:5001/api/reply/' + str(reply_id))
+    return res.json(), res.status_code
+
+@app.route('/reply', methods=['POST'])
+@token_required
+def create_reply(current_user):
+
+    app.logger.info('create_reply')
+    res = requests.post('http://127.0.0.1:5001/api/replies', json=request.get_json())
+    return res.json(), res.status_code
+
+@app.route('/reply/<reply_id>', methods=['PUT'])
+@token_required
+def update_reply(current_user, reply_id):
+
+    app.logger.info('update_reply')
+    res = requests.put('http://127.0.0.1:5001/api/reply/' + str(reply_id), json=request.get_json())
+    return res.json(), res.status_code
+
+@app.route('/reply/<reply_id>', methods=['DELETE'])
+@token_required
+def delete_reply(current_user, reply_id):
+
+    app.logger.info('delete_reply')
+    res = requests.delete('http://127.0.0.1:5001/api/reply/' + str(reply_id))
+    return res.json(), res.status_code
+
+# Session
+
 @app.route('/sessions', methods=['GET'])
 @token_required
 def get_sessions(current_user):
@@ -300,6 +400,106 @@ def delete_session(current_user, session_id):
     res = requests.delete('http://127.0.0.1:5002/api/session/' + str(session_id))
     return res.json(), res.status_code
 
+
+# Question
+
+@app.route('/questions', methods=['GET'])
+@token_required
+def get_questions(current_user):
+
+    app.logger.info('get_questions')
+    res = requests.get('http://127.0.0.1:5002/api/questions')
+    print(type(res.json()))
+    questions= res.json()
+    output=[]
+    for question in questions:
+        output.append(question)
+    response = jsonify({'questions' : output})
+    return response,res.status_code
+
+
+@app.route('/question/<question_id>', methods=['GET'])
+@token_required
+def get_question(current_user,question_id):
+
+    app.logger.info('get_question')
+    res = requests.get('http://127.0.0.1:5002/api/question/' + str(question_id))
+    return res.json(), res.status_code
+
+@app.route('/question/<question_id>', methods=['DELETE'])
+@token_required
+def delete_question(current_user, question_id):
+
+    app.logger.info('delete_question')
+    res = requests.delete('http://127.0.0.1:5002/api/question/' + str(question_id))
+    return res.json(), res.status_code
+
+# Answer
+
+@app.route('/answers', methods=['GET'])
+@token_required
+def get_answers(current_user):
+
+    app.logger.info('get_answers')
+    res = requests.get('http://127.0.0.1:5002/api/answers')
+    print(type(res.json()))
+    answers= res.json()
+    output=[]
+    for answer in answers:
+        output.append(answer)
+    response = jsonify({'answers' : output})
+    return response,res.status_code
+
+
+@app.route('/answer/<answer_id>', methods=['GET'])
+@token_required
+def get_answer(current_user,answer_id):
+
+    app.logger.info('get_answer')
+    res = requests.get('http://127.0.0.1:5002/api/answer/' + str(answer_id))
+    return res.json(), res.status_code
+
+@app.route('/answer/<answer_id>', methods=['DELETE'])
+@token_required
+def delete_answer(current_user, answer_id):
+
+    app.logger.info('delete_answer')
+    res = requests.delete('http://127.0.0.1:5002/api/answer/' + str(answer_id))
+    return res.json(), res.status_code
+
+# Invitee
+
+@app.route('/invitees', methods=['GET'])
+@token_required
+def get_invitees(current_user):
+
+    app.logger.info('get_invitees')
+    res = requests.get('http://127.0.0.1:5002/api/invitees')
+    print(type(res.json()))
+    invitees= res.json()
+    output=[]
+    for invitee in invitees:
+        output.append(invitee)
+    response = jsonify({'invitees' : output})
+    return response,res.status_code
+
+
+@app.route('/invitee/<invitee_id>', methods=['GET'])
+@token_required
+def get_invitee(current_user,invitee_id):
+
+    app.logger.info('get_invitee')
+    res = requests.get('http://127.0.0.1:5002/api/invitee/' + str(invitee_id))
+    return res.json(), res.status_code
+
+@app.route('/invitee/<invitee_id>', methods=['DELETE'])
+@token_required
+def delete_invitee(current_user, invitee_id):
+
+    app.logger.info('delete_invitee')
+    res = requests.delete('http://127.0.0.1:5002/api/invitee/' + str(invitee_id))
+    return res.json(), res.status_code
+    
 @app.route('/articles', methods=['GET'])
 @token_required
 def get_articles(current_user):
